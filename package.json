@@ -1,0 +1,35 @@
+{
+  "name": "tipsease_backEnd",
+  "version": "1.0.0",
+  "description": "Backend repository",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js",
+    "test": "cross-env DB_ENV=testing jest --watch",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Build-Week-Tipsease/tipsease_backEnd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Build-Week-Tipsease/tipsease_backEnd/issues"
+  },
+  "homepage": "https://github.com/Build-Week-Tipsease/tipsease_backEnd#readme",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cross-env": "^6.0.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.19.5",
+    "sqlite3": "^4.1.0"
+  }
+}
