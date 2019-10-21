@@ -43,7 +43,7 @@ exports.seed = function(knex) {
           company: 'Claim Jumper',
           YearsAtCompany: 6,
           balance: 53
-        },
+        }
       ]);
     });
 };
