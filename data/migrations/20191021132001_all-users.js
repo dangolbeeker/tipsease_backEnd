@@ -39,7 +39,6 @@ exports.up = function(knex) {
             .notNullable()
         tbl.integer('balance')
             .notNullable()
-
     })
 };
 
