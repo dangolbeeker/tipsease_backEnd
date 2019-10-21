@@ -2,7 +2,6 @@
 exports.up = function(knex) {
     return knex.schema.createTable('customers', tbl => {
         tbl.increments()
-
         tbl.string('username', 120)
             .notNullable()
             .unique();
@@ -14,11 +13,11 @@ exports.up = function(knex) {
             .notNullable()
         tbl.string('email', 120)
             .notNullable()
+            .unique();
         tbl.boolean('customerOrService')
     })
     .createTable('serviceWorker', tbl => {
         tbl.increments()
-
         tbl.string('username', 120)
             .notNullable()
             .unique();
@@ -30,6 +29,7 @@ exports.up = function(knex) {
             .notNullable()
         tbl.string('email', 120)
             .notNullable()
+            .unique();
         tbl.boolean('customerOrService')
         tbl.string('tagline', 80)
             .notNullable()
