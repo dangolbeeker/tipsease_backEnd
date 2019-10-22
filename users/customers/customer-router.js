@@ -3,11 +3,12 @@ const db = require('./customer-model')
 
 const bcrypt = require('bcryptjs')
 const makeToken = require('../../token/token')
+const blocked = require('./customer-middleware')
 
 
 
 
-router.get('/', (req, res) => {
+router.get('/', blocked, (req, res) => {
     db.find()
         .then(response => {
             res.status(200).json(response)
