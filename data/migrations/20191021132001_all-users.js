@@ -38,7 +38,6 @@ exports.up = function(knex) {
         tbl.integer('YearsAtCompany')
             .notNullable()
         tbl.integer('balance')
-            .notNullable()
     })
 };
 
