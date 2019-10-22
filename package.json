@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Build-Week-Tipsease/tipsease_backEnd#readme",
   "devDependencies": {
     "jest": "^24.9.0",
+    "node": "^12.12.0",
     "nodemon": "^1.19.4",
     "supertest": "^4.0.2"
   },
