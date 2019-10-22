@@ -18,6 +18,17 @@ router.get('/', blocked, (req, res) => {
 })
 
 
+router.get('/:id', blocked, (req, res) => {
+    const {id} = req.params
+
+    db.findById(id)
+        .then(response => {
+            res.status(200).json(response)
+        })
+        .catch(err => res.status(500).json({err: 'Missing id'}))
+})
+
+
 router.post('/signup', (req, res) => {
     const service = req.body
     const hash = bcrypt.hashSync(service.password, 12)

@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const secrets = require('../../token/secrets');
 
 
-/
+
 module.exports = (req, res, next) => {
   const token = req.headers.token;
 
