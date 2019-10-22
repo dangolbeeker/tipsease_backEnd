@@ -1,6 +1,9 @@
 {
   "name": "tipsease_backEnd",
   "version": "1.0.0",
+  "engines": {
+    "node": "v12.2.0"
+  },
   "description": "Backend repository",
   "main": "index.js",
   "scripts": {
