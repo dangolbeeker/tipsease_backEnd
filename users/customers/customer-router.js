@@ -2,7 +2,7 @@ const router = require('express').Router();
 const db = require('./customer-model')
 
 const bcrypt = require('bcryptjs')
-
+const makeToken = require('../../token/token')
 
 
 
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 })
 
 
-router.post('/', (req, res) => {
+router.post('/signup', (req, res) => {
     const customer = req.body
     const hash = bcrypt.hashSync(customer.password, 12)
     customer.password = hash
@@ -25,8 +25,27 @@ router.post('/', (req, res) => {
         .then(response => {
             res.status(201).json(response)
         })
-        .catch(err => {console.log(err)})
+        .catch(err => res.status(500).json({err: 'Missing creds'}))
 })
+
+
+router.post('/login', (req, res) => {
+    const { username, password } = req.body
+
+    db.findBy({username})
+        .first()
+        .then(user => {
+            if(user && bcrypt.compareSync(password, user.password)){
+                const token = makeToken(user)
+                res.status(200).json({note: `user ${user.username} has a token`, token})
+            } else {
+                res.status(401).json({ message: 'Invalid creds my dude' });
+            }
+        })
+        .catch(err => res.status(500).json({err: 'Missing creds'}))
+})
+
+
 
 
 
