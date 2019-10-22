@@ -2,7 +2,7 @@ const router = require('express').Router();
 const db = require('./customer-model')
 
 const bcrypt = require('bcryptjs')
-const makeToken = require('../../token/token')
+const {customerToken} = require('../../token/token')
 const blocked = require('./customer-middleware')
 
 
@@ -37,7 +37,7 @@ router.post('/login', (req, res) => {
         .first()
         .then(user => {
             if(user && bcrypt.compareSync(password, user.password)){
-                const token = makeToken(user)
+                const token = customerToken(user)
                 res.status(200).json({note: `user ${user.username} has a token`, token})
             } else {
                 res.status(401).json({ message: 'Invalid creds my dude' });
