@@ -7,8 +7,8 @@ module.exports = {
     add,
     findBy,
     remove,
-    addBudget,
-    findService
+    // addBudget,
+    // findService
 }
 
 
