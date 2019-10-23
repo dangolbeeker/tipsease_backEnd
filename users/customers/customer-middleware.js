@@ -6,7 +6,7 @@ const secrets = require('../../token/secrets');
 //Set the db to different tables by 'const's and give them if statements to secure them.
 
 module.exports = (req, res, next) => {
-  const token = req.headers.Authorization;
+  const token = req.body.Authorization;
 
   // const customers = db('customers')
   // const service = db('serviceWorker')

@@ -72,20 +72,21 @@ router.delete('/:id', blocked, (req, res) => {
 });
 
 
-// router.put('/:id/tip', (req, res) => {
-//     const {balance, username, company} = req.body
+router.put('/:id/tip', (req, res) => {
+    const { id } = req.params
+    const balance = req.body
 
     
-//     db.addBudget({balance, username, company})
-//         .then(response => {
-//             if(!balance && !username && !company){
-//                 res.status(400).json({message: 'Please fill out all fields'})
-//             } else {
-//                 res.status(200).json({Message: `Tip given to ${response.username}`})
-//             }
-//         })
-//         .catch(err => {res.status(500).json({error: 'Failed to give proper info'})})
-// })
+    db.addBudget({balance, username, company})
+        .then(response => {
+            if(!balance && !username && !company){
+                res.status(400).json({message: 'Please fill out all fields'})
+            } else {
+                res.status(200).json({Message: `Tip given to ${response.username}`})
+            }
+        })
+        .catch(err => {res.status(500).json({error: 'Failed to give proper info'})})
+})
 
 
 

@@ -37,14 +37,20 @@ function remove(id) {
         .del();
 }
 
-// function addBudget(balance, id){
-//     return db('serviceWorker')
-//         .update(balance)
-//         .where({id})
-// }
+function addBudget(balance, id){
+    return db('serviceWorker')
+        .update(balance)
+        .where({id})
+}
 
-// function findService(){
-//     return db('serviceWorker')
-// }
+function findByIdService(id){
+    return db('serviceWorker')
+        .where({ id })
+        .first()
+}
+
+function findService(){
+    return db('serviceWorker')
+}
 
 //balance
