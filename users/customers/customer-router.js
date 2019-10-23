@@ -2,7 +2,7 @@ const router = require('express').Router();
 const db = require('./customer-model')
 
 const bcrypt = require('bcryptjs')
-const makeToken = require('../../token/token')
+const {customerToken} = require('../../token/token')
 const blocked = require('./customer-middleware')
 
 
@@ -14,6 +14,17 @@ router.get('/', blocked, (req, res) => {
             res.status(200).json(response)
         })
         .catch(err => {console.log(err)})
+})
+
+
+router.get('/:id', blocked, (req, res) => {
+    const {id} = req.params
+
+    db.findById(id)
+        .then(response => {
+            res.status(200).json(response)
+        })
+        .catch(err => res.status(500).json({err: 'Missing id'}))
 })
 
 
@@ -37,7 +48,7 @@ router.post('/login', (req, res) => {
         .first()
         .then(user => {
             if(user && bcrypt.compareSync(password, user.password)){
-                const token = makeToken(user)
+                const token = customerToken(user)
                 res.status(200).json({note: `user ${user.username} has a token`, token})
             } else {
                 res.status(401).json({ message: 'Invalid creds my dude' });
@@ -47,7 +58,11 @@ router.post('/login', (req, res) => {
 })
 
 
-
+router.delete('/:id', blocked, (req, res) => {
+    db.remove(req.params.id)
+        .then(res.status(200).json({message: 'user has been deleted'}))
+        .catch(err => res.status(500).json({ message: 'user not able to be deleted' }))
+});
 
 
 module.exports = router

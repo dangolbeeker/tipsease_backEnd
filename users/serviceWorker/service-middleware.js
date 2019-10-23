@@ -1,15 +1,11 @@
 const jwt = require('jsonwebtoken');
 const secrets = require('../../token/secrets');
-// const db = require('../../data/db-config')
 
 
-//Set the db to different tables by 'const's and give them if statements to secure them.
 
 module.exports = (req, res, next) => {
   const token = req.headers.token;
 
-  // const customers = db('customers')
-  // const service = db('serviceWorker')
 
 
   if (token) {
