@@ -7,8 +7,9 @@ module.exports = {
     add,
     findBy,
     remove,
-    // addBudget,
-    // findService
+    addBudget,
+    findByIdService,
+    // findByIdBalance
 }
 
 
@@ -37,9 +38,9 @@ function remove(id) {
         .del();
 }
 
-function addBudget(balance, id){
+async function addBudget(balance, id){
     return db('serviceWorker')
-        .update(balance)
+        .update({balance: balance})
         .where({id})
 }
 
@@ -49,8 +50,11 @@ function findByIdService(id){
         .first()
 }
 
-function findService(){
-    return db('serviceWorker')
-}
+// function findByIdBalance(id){
+//     return db('serviceWorker')
+//         .select('balance')
+//         .where({ id })
+//         .first()
+// }
 
 //balance
