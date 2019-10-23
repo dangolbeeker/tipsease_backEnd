@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const db = require('./service-model')
-// const request = require('request');
 
 const bcrypt = require('bcryptjs')
 const {serviceToken} = require('../../token/token')
@@ -14,33 +13,7 @@ router.all('/', function(req, res, next) {
   });
 
 
-// app.get('/jokes/random', (req, res) => {
-//   request(
-//     { url: 'https://tipsease-msm.herokuapp.com' },
-//     (error, response, body) => {
-//       if (error || response.statusCode !== 200) {
-//         return res.status(500).json({ type: 'error', message: err.message });
-//       }
-
-//       res.json(JSON.parse(body));
-//     }
-//   )
-// });
-
-
-
-
 router.get('/', blocked, (req, res) => {
-
-    // request(
-    //     { url: 'https://tipsease-msm.herokuapp.com/api/serviceworker' },
-    //     (error, response, body) => {
-    //       if (error || response.statusCode !== 200) {
-    //         return res.status(500).json({message: error });
-    //       } 
-          
-    //     }
-    //     )
         db.find()
             .then(response => {
                 res.status(200).json(response)
@@ -51,16 +24,6 @@ router.get('/', blocked, (req, res) => {
 
 
 router.get('/:id', blocked, (req, res) => {
-
-    // request(
-    //     { url: 'https://tipsease-msm.herokuapp.com/api/serviceworker/' },
-    //     (error, response, body) => {
-    //       if (error || response.statusCode !== 200) {
-    //         return res.status(500).json({ type: 'error', message: err.message });
-    //       } else {} })
-
-
-
     const {id} = req.params
 
     db.findById(id)
@@ -72,16 +35,6 @@ router.get('/:id', blocked, (req, res) => {
 
 
 router.post('/signup', (req, res) => {
-
-
-    // request(
-    //     { url: 'https://tipsease-msm.herokuapp.com/api/serviceworker' },
-    //     (error, response, body) => {
-    //       if (error || response.statusCode !== 200) {
-    //         return res.status(500).json({ type: 'error', message: err.message });
-    //       } else {} })
-
-
     const service = req.body
     const hash = bcrypt.hashSync(service.password, 12)
     service.password = hash
@@ -95,16 +48,6 @@ router.post('/signup', (req, res) => {
 
 
 router.post('/login', (req, res) => {
-
-    // request(
-    //     { url: 'https://tipsease-msm.herokuapp.com/api/serviceworker' },
-    //     (error, response, body) => {
-    //       if (error || response.statusCode !== 200) {
-    //         return res.status(500).json({ type: 'error', message: err.message });
-    //       } else {} })
-
-
-
     const { username, password } = req.body
 
     db.findBy({username})
@@ -122,16 +65,6 @@ router.post('/login', (req, res) => {
 
 
 router.delete('/:id', blocked, (req, res) => {
-
-    // request(
-    //     { url: 'https://tipsease-msm.herokuapp.com/api/serviceworker' },
-    //     (error, response, body) => {
-    //       if (error || response.statusCode !== 200) {
-    //         return res.status(500).json({ type: 'error', message: err.message });
-    //       } else {} })
-
-
-
     db.remove(req.params.id)
         .then(res.status(200).json({message: 'user has been deleted'}))
         .catch(err => res.status(500).json({ message: 'user not able to be deleted' }))
@@ -139,3 +72,34 @@ router.delete('/:id', blocked, (req, res) => {
 
 
 module.exports = router
+
+
+
+
+
+
+
+//////////////////////// CORS code notes
+
+// app.get('/jokes/random', (req, res) => {
+//   request(
+//     { url: 'https://tipsease-msm.herokuapp.com' },
+//     (error, response, body) => {
+//       if (error || response.statusCode !== 200) {
+//         return res.status(500).json({ type: 'error', message: err.message });
+//       }
+
+//       res.json(JSON.parse(body));
+//     }
+//   )
+// });
+
+// request(
+    //     { url: 'https://tipsease-msm.herokuapp.com/api/serviceworker' },
+    //     (error, response, body) => {
+    //       if (error || response.statusCode !== 200) {
+    //         return res.status(500).json({message: error });
+    //       } 
+          
+    //     }
+    //     )
