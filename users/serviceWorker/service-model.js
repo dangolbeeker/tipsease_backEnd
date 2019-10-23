@@ -6,7 +6,9 @@ module.exports = {
     findById,
     add,
     findBy,
-    remove
+    remove,
+    addBudget,
+    findByIdService
 }
 
 
@@ -33,4 +35,16 @@ function remove(id) {
     return db('serviceWorker')
         .where('id', id)
         .del();
+}
+
+function addBudget(balance, id){
+    return db('serviceWorker')
+        .update({balance: balance})
+        .where({id})
+}
+
+function findByIdService(id){
+    return db('serviceWorker')
+        .where({ id })
+        .first()
 }

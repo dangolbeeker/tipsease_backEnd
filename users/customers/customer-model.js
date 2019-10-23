@@ -38,7 +38,7 @@ function remove(id) {
         .del();
 }
 
-async function addBudget(balance, id){
+function addBudget(balance, id){
     return db('serviceWorker')
         .update({balance: balance})
         .where({id})

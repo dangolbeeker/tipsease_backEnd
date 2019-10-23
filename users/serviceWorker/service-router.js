@@ -71,6 +71,42 @@ router.delete('/:id', blocked, (req, res) => {
 });
 
 
+
+
+router.put('/:id/tip', (req, res) => {
+    const { id } = req.params
+    const { balance, username, company } = req.body
+
+
+    db.findByIdService(id)
+        .then(worker => {
+            if(username !== worker.username || company !== worker.company){
+                res.status(404).json({message: 'Could not find Service Worker at that company'})
+            } else if(balance === null || !balance) {
+                res.status(404).json({message: 'not feeling so giving?'})
+            } else {
+                db.addBudget(balance, id)
+                    .then(response => {
+                        res.status(200).json({message: `You have given a wonderful tip of $${balance}, to ${username}. Thank you on their behalf!`})
+                    })
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Failed to update worker' })
+        })
+})
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router
 
 
