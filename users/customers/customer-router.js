@@ -58,7 +58,11 @@ router.post('/login', (req, res) => {
 })
 
 
-
+router.delete('/:id', blocked, (req, res) => {
+    db.remove(req.params.id)
+        .then(res.status(200).json({message: 'user has been deleted'}))
+        .catch(err => res.status(500).json({ message: 'user not able to be deleted' }))
+});
 
 
 module.exports = router
