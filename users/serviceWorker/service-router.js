@@ -12,8 +12,8 @@ router.all('/', function(req, res, next) {
     next()
   });
 
-
-router.get('/', blocked, (req, res) => {
+//   blocked,
+router.get('/',  (req, res) => {
         db.find()
             .then(response => {
                 res.status(200).json(response)
@@ -23,7 +23,7 @@ router.get('/', blocked, (req, res) => {
 })
 
 
-router.get('/:id', blocked, (req, res) => {
+router.get('/:id', blocked,  (req, res) => {
     const {id} = req.params
 
     db.findById(id)
