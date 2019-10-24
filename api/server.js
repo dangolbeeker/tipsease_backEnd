@@ -1,10 +1,12 @@
 const express = require('express')
 const server = express()
+const cors = require('cors')
 const Customers = require('../users/customers/customer-router')
 const ServiceWorker = require('../users/serviceWorker/service-router')
 
 
 server.use(express.json())
+server.use(cors())
 server.use('/api/customers', CORS, Customers)
 server.use('/api/serviceworker', CORS, ServiceWorker)
 server.use((req, res, next) => {
