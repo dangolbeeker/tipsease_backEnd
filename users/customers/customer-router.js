@@ -56,7 +56,7 @@ router.post('/login', (req, res) => {
         .then(user => {
             if(user && bcrypt.compareSync(password, user.password)){
                 const token = customerToken(user)
-                res.status(200).json({note: `user ${user.username} has a token`, token})
+                res.status(200).json(user, token)
             } else {
                 res.status(401).json({ message: 'Invalid creds my dude' });
             }
