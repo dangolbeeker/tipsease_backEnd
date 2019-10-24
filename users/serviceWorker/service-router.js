@@ -3,14 +3,14 @@ const db = require('./service-model')
 
 const bcrypt = require('bcryptjs')
 const {serviceToken} = require('../../token/token')
-const blocked = require('./service-middleware')
+// const blocked = require('./service-middleware')
 
 
-router.all('/', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next()
-  });
+// router.all('/', function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     next()
+//   });
 
 //   blocked,
 router.get('/',  (req, res) => {
@@ -22,8 +22,8 @@ router.get('/',  (req, res) => {
 
 })
 
-
-router.get('/:id', blocked,  (req, res) => {
+// blocked,
+router.get('/:id',   (req, res) => {
     const {id} = req.params
 
     db.findById(id)
@@ -63,8 +63,8 @@ router.post('/login', (req, res) => {
         .catch(err => res.status(500).json({err: 'Missing creds'}))
 })
 
-
-router.delete('/:id', blocked, (req, res) => {
+// blocked,
+router.delete('/:id',  (req, res) => {
     db.remove(req.params.id)
         .then(res.status(200).json({message: 'user has been deleted'}))
         .catch(err => res.status(500).json({ message: 'user not able to be deleted' }))
