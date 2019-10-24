@@ -6,7 +6,10 @@ module.exports = {
     findById,
     add,
     findBy,
-    remove
+    remove,
+    addBudget,
+    findByIdService,
+    // findByIdBalance
 }
 
 
@@ -34,3 +37,24 @@ function remove(id) {
         .where('id', id)
         .del();
 }
+
+function addBudget(balance, id){
+    return db('serviceWorker')
+        .update({balance: balance})
+        .where({id})
+}
+
+function findByIdService(id){
+    return db('serviceWorker')
+        .where({ id })
+        .first()
+}
+
+// function findByIdBalance(id){
+//     return db('serviceWorker')
+//         .select('balance')
+//         .where({ id })
+//         .first()
+// }
+
+//balance

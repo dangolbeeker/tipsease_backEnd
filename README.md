@@ -30,6 +30,13 @@ Backend repository
 }```
 
 
+(PUT `api/customers/:id/tip`)- allows users to give a tip to a Service Worker IF they have the correct `username` and `company` name fields. The input for the tip is represented as `balance` inside the request ```{
+    "username": "testing1",
+	"company": "Red Robin",
+	"balance": 66   <------------tip $ ammount
+}``` This will update the Service Workers current balance with what they were previously tipped.
+
+
 
 
 //Service Worker Links
@@ -60,3 +67,10 @@ Backend repository
     "username", -must be a registered Service Workers unique username
     "password" -must be the same registered Service Workers password
 }```
+
+
+(PUT `api/serviceworker/:id/tip`)- allows users to give a tip to a Service Worker IF they have the correct `username` and `company` name fields. The input for the tip is represented as `balance` inside the request ```{
+    "username": "testing1",
+	"company": "Red Robin",
+	"balance": 66   <------------tip $ ammount
+}``` This will update the Service Workers current balance with what they were previously tipped.

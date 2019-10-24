@@ -13,9 +13,9 @@ router.all('/', function(req, res, next) {
     next()
   });
 
+//   blocked,
 
-
-router.get('/', blocked, (req, res) => {
+router.get('/',  (req, res) => {
     db.find()
         .then(response => {
             res.status(200).json(response)
@@ -23,8 +23,8 @@ router.get('/', blocked, (req, res) => {
         .catch(err => {console.log(err)})
 })
 
-
-router.get('/:id', blocked, (req, res) => {
+// blocked,
+router.get('/:id',  (req, res) => {
     const {id} = req.params
 
     db.findById(id)
@@ -70,6 +70,47 @@ router.delete('/:id', blocked, (req, res) => {
         .then(res.status(200).json({message: 'user has been deleted'}))
         .catch(err => res.status(500).json({ message: 'user not able to be deleted' }))
 });
+
+
+router.put('/:id/tip', (req, res) => {
+    const { id } = req.params
+    const { balance, username, company } = req.body
+    // const oldBalance = () => {
+    //     db.findByIdService(id).then(response => {return response})
+    // }
+    // console.log(oldBalance())
+
+
+    db.findByIdService(id)
+        .then(worker => {
+            // console.log(worker)
+            if(username !== worker.username || company !== worker.company){
+                res.status(404).json({message: 'Could not find Service Worker at that company'})
+            } else if(balance === null || !balance) {
+                res.status(404).json({message: 'not feeling so giving?'})
+            } else {
+                db.addBudget(balance, id)
+                    .then(response => {
+                        res.status(200).json({message: `You have given a wonderful tip of $${balance}, to ${username}. Thank you on their behalf!`})
+                    })
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Failed to update worker' })
+        })
+
+
+    // db.addBudget({balance, username, company})
+    //     .then(response => {
+    //         if(!balance && !username && !company){
+    //             res.status(400).json({message: 'Please fill out all fields'})
+    //         } else {
+    //             res.status(200).json({Message: `Tip given to ${response.username}`})
+    //         }
+    //     })
+    //     .catch(err => {res.status(500).json({error: 'Failed to give proper info'})})
+})
+
 
 
 module.exports = router
