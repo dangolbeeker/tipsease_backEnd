@@ -1,5 +1,5 @@
 {
-  "name": "tipsease_backEnd",
+  "name": "tipsease_backend",
   "version": "1.0.0",
   "engines": {
     "node": "v12.2.0"
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Build-Week-Tipsease/tipsease_backEnd#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "core-util-is": "^1.0.2",
     "cors": "^2.8.5",
     "cross-env": "^6.0.3",
     "dotenv": "^8.2.0",
@@ -31,7 +32,8 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.5",
     "request": "^2.88.0",
-    "sqlite3": "^4.1.0"
+    "sqlite3": "^4.1.0",
+    "webpack-dev-server": "^3.9.0"
   },
   "devDependencies": {
     "jest": "^24.9.0",

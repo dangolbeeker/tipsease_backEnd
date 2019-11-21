@@ -31,13 +31,8 @@ exports.up = function(knex) {
             .notNullable()
             .unique();
         tbl.boolean('customerOrService')
-        tbl.string('tagline', 80)
-            .notNullable()
-        tbl.string('company')
-            .notNullable()
-        tbl.integer('YearsAtCompany')
-            .notNullable()
-        tbl.integer('balance')
+        
+        
     })
 };
 
