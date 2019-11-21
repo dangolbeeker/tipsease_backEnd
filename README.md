@@ -56,10 +56,7 @@ Backend repository
     "LastName", -string
     "email", -must have an @---.com
     "customerOrService", -boolean, true or false
-    "tagline", -string
-    "company", -string
-    "YearsAtCompany", -integer
-    "balance" -integer--------------->(right now this is required, but I'm fixing that)
+    
 }```
 
 
